@@ -11,11 +11,22 @@ public class Permutations
 	public static int[][] permutations(int n)
 	{
 		
-		if(n == 0) {
+		if(size(n) == 0) {
 			return  new int[0][0];
 		}
 		
+		
+		
 		return null;
+	}
+	
+	public static int size (int n) 
+	{
+		int count = 1;
+		for (int i = 2; i <= n; i++) {
+			count *= i;
+		}
+		return count;
 	}
 	
 //	public void permute(int[] arr, int i)
