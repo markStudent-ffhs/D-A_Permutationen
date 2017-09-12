@@ -10,14 +10,32 @@ public class Permutations
 	 */
 	public static int[][] permutations(int n)
 	{
-		
-		if(size(n) == 0) {
-			return  new int[0][0];
+		if(n == 0) {
+			return new int[0][0];
 		}
-		
-		
-		
-		return null;
+		int count = size(n);
+		int[][] result = new int[count][n];
+		int[] base = new int[n];
+		for (int i = 0; i < n; i++) {
+			base[i] = i;
+		}
+		permute(base,0,result,0);
+		return result;
+	}
+	
+	private static int permute(int[] array, int index, int[][] result,int count)
+	{
+		if(index >= array.length - 1){ 
+			result[count] = array.clone();
+			count++;
+	        return count;
+	    }
+	    for(int i = index; i < array.length; i++){ 
+	    	swap(array,index,i);
+	        count = permute(array, index+1,result,count);
+	        swap(array,index,i);
+	    }
+	    return count;
 	}
 	
 	public static int size (int n) 
@@ -28,21 +46,6 @@ public class Permutations
 		}
 		return count;
 	}
-	
-//	public void permute(int[] arr, int i)
-//	{
-//	    if (i == arr.length)
-//	    {
-//	        System.out.println(Arrays.toString(arr));
-//	        return;
-//	    }
-//	    for (int j = i; j < arr.length; j++)
-//	    {
-//	        swap(arr, i, j); 
-//	        permute(arr, i + 1);  // recurse call
-//	        swap(arr, i, j);      // backtracking
-//	    }
-//	} 
 	
 
 	// Folgende Hilfsmethode ist wahrscheinlich nützlich
